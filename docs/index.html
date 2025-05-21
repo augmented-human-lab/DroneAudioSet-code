@@ -12,15 +12,15 @@
         <div class="header-content">
             <h1>DroneAudioSet</h1>
             <div class="authors">
-                <span>Your Name</span><sup>1</sup>,
-                <span>Co-Author</span><sup>2</sup>
+                <span>Chitralekha Gupta<sup>*</sup>, Soundarya Ramesh<sup>*</sup></span>,
+                <span>Praveen Sasikumar,Kian Peen Yeo,Suranga Nanayakkara</span>
+                <div><sup>*</sup>equal contributors</div>
                 <div class="affiliations">
-                    <sup>1</sup>Augmented Human Lab, Institution<br>
-                    <sup>2</sup>Affiliation 2
+                    Augmented Human Lab, School of Computing, National University of Singapore
                 </div>
             </div>
             <div class="conference">
-                Published at Conference Name 2023
+                Submitted to Neurips Dataset and Benchmarks 2025
             </div>
         </div>
     </header>
@@ -39,14 +39,13 @@
             <h2>Abstract</h2>
             <div class="content-box">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. 
-                    Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus 
-                    gravida at rutrum nisl ultrices. Fusce fermentum aliquam arcu, sit amet 
-                    sollicitudin ante pulvinar eget.
+                    Unmanned Aerial Vehicles (UAVs) or drones, are increasingly used in search and rescue missions to detect human presence. Existing systems primarily leverage vision-based methods which are prone to fail under low-visibility or occlusion. Drone-based audio perception offers promise but suffers from extreme ego-noise that masks sounds indicating human presence.  
+Existing datasets are either limited in diversity or synthetic, lacking real acoustic interactions, and there are no standardized setups for drone audition. 
+To this end, we present DroneAudioset (The dataset is publicly available at https://huggingface.co/datasets/ahlab-drone-project/DroneAudioSet/ under the MIT license), a comprehensive drone audition dataset featuring 23.5 hours of annotated recordings, covering a wide range of signal-to-noise ratios (SNRs) from -60 dB to 0 dB, across various drone types, throttles, microphone configurations as well as environments. The dataset enables development and systematic evaluation of noise suppression and classification methods for human-presence detection under challenging conditions, while also informing practical design considerations for drone audition systems, such as microphone placement trade-offs, and development of drone noise-aware audio processing. This dataset is an important step towards enabling design and deployment of drone-audition systems.
                 </p>
                 <div class="teaser-image">
-                    <img src="images/teaser.png" alt="Project Teaser Image">
-                    <p class="caption">Figure: Caption for your teaser image.</p>
+                    <img src="images/data-collection-setup-v2.pdf" alt="Data Colection Setup">
+                    <p class="caption">Figure (a) illustrates our experimental setup with the drone attached to a fixed aluminum frame, with two microphone arrays, \micup and \micdown, and a single microphone, \miccenter. The source sounds (i.e., human vocal sounds, human presence sounds and ambient sounds) are transmitted through a speaker. (b) the actual setup -- the drone frame, microphone array, and the drones used.</p>
                 </div>
             </div>
         </section>
