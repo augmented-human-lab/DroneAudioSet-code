@@ -8,10 +8,14 @@
     <!-- Keep only UMD versions -->
     <!-- <script src="https://unpkg.com/wavesurfer.js@4.6.0/dist/wavesurfer.min.js"></script>
     <script src="https://unpkg.com/wavesurfer.js@4.6.0/dist/plugin/wavesurfer.spectrogram.min.js"></script> -->
-     <script src="https://unpkg.com/wavesurfer.js@7.9.5/dist/wavesurfer.esm.js"></script>
-     <script src="https://unpkg.com/wavesurfer.js@7.9.5/dist/plugins/spectrogram.esm.js"></script>
+     <!-- <script src="https://unpkg.com/wavesurfer.js@7.9.5/dist/wavesurfer.min.js"></script>
+     <script src="https://unpkg.com/wavesurfer.js@7.9.5/dist/plugins/spectrogram.min.js"></script> -->
      <!-- <script src="https://unpkg.com/wavesurfer.js@7.9.5/dist/plugins/spectrogram.min.js"></script> -->
-    <!-- Then load other resources -->
+    <script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/spectrogram.js"></script>
+     
+    
+     <!-- Then load other resources -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -66,16 +70,7 @@
     }
     
 
-    function generateColorMap() {
-    const colorMap = [];
-    for (let i = 0; i < 256; i++) {
-        const r = i < 128 ? 0 : (i - 128) * 2;
-        const g = i < 128 ? i * 2 : 255 - (i - 128) * 2;
-        const b = 255 - i;
-        colorMap.push([r, g, b, 255]);  // RGBA
-    }
-    return colorMap;
-    }
+    
 
     // Initialize all spectrogram containers
     const containers = document.querySelectorAll('.spectrogram-container');
@@ -103,7 +98,7 @@
                     WaveSurfer.spectrogram.create({
                         container: container,
                         labels: true,
-                        height: 100,
+                        height: 200,
                         // splitChannels: [
                         //         {
                         //             progressColor: 'green',
@@ -175,7 +170,6 @@
         }
     });
     
-    // Rest of your existing channel selection code...
 });
 </script>
 
