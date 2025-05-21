@@ -6,7 +6,7 @@
     <title>DroneAudioSet - Augmented Human Lab</title>
     
     <!-- Keep only UMD versions -->
-    <script src="https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js@4.6.0/dist/wavesurfer.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/plugins/spectrogram.min.js"></script>
 
      
@@ -44,7 +44,7 @@
         </ul>
     </nav>
 
-    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <!-- <script src="https://unpkg.com/wavesurfer.js"></script> -->
     <script>
         
         
@@ -70,6 +70,10 @@
         
         try {
             console.log('WaveSurfer:', WaveSurfer); // Check if it's loaded
+            console.log('container:', container); // Check if it's loaded
+            
+            
+            
             // Create WaveSurfer instance
             const wavesurfer = WaveSurfer.create({
                 container: container,
@@ -184,7 +188,7 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
                             </tr>
 
                             <!-- Example Row 2 -->
-                            <tr class="settings-row">
+                            <!-- <tr class="settings-row">
                                 <td rowspan="2">-6 dB <br>(SNR group: >-10 dB)</td>
                                 <td colspan="5" class="settings-cell">
                                     80pc-speaker-volume-room1-drone1-speaker-dist-5m-mic-dist-50cm-throttle-50-mic1_soundskrit
@@ -221,7 +225,7 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
                                     </audio>
                                     <img src="spectrograms/clean_1.png" alt="Spectrogram 1" class="spectrogram">
                                 </td>
-                            </tr>
+                            </tr> -->
                             
                             <!-- Repeat for additional rows (change numbers) -->
                         </tbody>
