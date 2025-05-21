@@ -86,7 +86,7 @@ nav a:hover {
 }
 
 main {
-    max-width: 900px;
+    max-width: 1200px;  /* Increased from 900px */
     margin: 2rem auto;
     padding: 0 20px;
 }
@@ -276,5 +276,94 @@ footer {
     
     .audio-table td:last-child {
         border-bottom: none;
+    }
+}
+
+/* Audio Table Styles */
+.audio-table {
+    overflow-x: auto;
+    margin: 0 -20px;  /* Allow table to extend beyond padding */
+}
+
+.audio-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    min-width: 1000px;  /* Ensure table doesn't get too narrow */
+}
+
+/* Settings row styles */
+.settings-row {
+    background-color: #f0f0f0;
+}
+
+.settings-cell {
+    font-family: monospace;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    text-align: left;
+    background-color: #eaeaea;
+}
+
+/* Rest of your existing table styles... */
+.audio-table th, .audio-table td {
+    padding: 0.8rem;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    vertical-align: top;
+}
+
+.audio-table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+.audio-table tr:nth-child(even):not(.settings-row) {
+    background-color: #f8f8f8;
+}
+
+.audio-table audio {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 0.5rem;
+}
+
+.spectrogram {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+}
+
+/* Responsive table */
+@media (max-width: 1200px) {
+    .audio-table {
+        margin: 0 -10px;
+    }
+    
+    main {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Keep your existing mobile styles but add settings row support */
+    .settings-row td {
+        display: block;
+        text-align: left;
+        padding: 0.5rem;
+    }
+    
+    .settings-cell {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .audio-table table {
+        min-width: auto;
     }
 }
