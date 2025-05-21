@@ -85,38 +85,32 @@
             
             
             // Create WaveSurfer instance
-            // const wavesurfer = WaveSurfer.create({
-            //     container: container,
-            //     waveColor: 'transparent',
-            //     progressColor: 'transparent',
-            //     cursorWidth: 0,
-            //     height: 256,
-            //     responsive: true,
-            //     plugins: [
-            //         WaveSurfer.spectrogram.create({
-            //             container: container,
-            //             labels: false,
-            //             height: 256,
-            //             frequencyMax: 8000,
-            //             noverlap: 4,
-            //             windowFunc: 'hann',
-            //             fftSamples: 512
-            //             // colorMap: generateColorMap()
-            //         })
-            //     ]
-            // });
-            
-            const wavesurfer = WaveSurfer.spectrogram.create({
+            const wavesurfer = WaveSurfer.create({
+                container: container,
+                waveColor: 'rgb(200, 0, 200)',
+                progressColor: 'rgb(100, 0, 100)',
+                // cursorWidth: 0,
+                // height: 256,
+                // responsive: true,
+                plugins: [
+                    WaveSurfer.spectrogram.create({
                         container: container,
                         labels: false,
                         height: 256,
+                        splitChannels: true,
+                        scale: 'logarithmic',
                         frequencyMax: 8000,
-                        noverlap: 4,
-                        windowFunc: 'hann',
-                        fftSamples: 512
+                        frequencyMin: 0,
+                        // noverlap: 4,
+                        // windowFunc: 'hann',
+                        fftSamples: 512,
+                        labelsBackground: 'rgba(0, 0, 0, 0.1)'
                         // colorMap: generateColorMap()
-                
+                    })
+                ]
             });
+            
+            
 
             // Load the audio file
             wavesurfer.load(audioSrc);
