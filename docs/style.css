@@ -187,7 +187,7 @@ footer {
 @media (max-width: 768px) {
     nav ul {
         flex-direction: column;
-        align-items: center;
+        align-items: left;
     }
     
     .download-item {
@@ -234,15 +234,28 @@ footer {
     margin-bottom: 0.5rem;
 }
 
-/* .spectrogram {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border: 1px solid #ddd;
-} */
-
+.spectrogram {
+    
+    /* width: 100%;         /*  Make it responsive */
+    /* height: auto;          Maintain aspect ratio */
+    /* transform: scale(0.2); */
+    /* max-width: 150px;       /* Maximum width you want */
+    /* max-height: 100px;       Maximum width you want */ 
+    
+    /* display: block; */
+    margin: 1rem auto;     /* Fixed typo (was "1 auto") */
+    /* object-fit: contain;   Ensures proper scaling */
+    /* Optional: add a subtle shadow for depth */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* Optional: smooth scaling on hover */
+    transition: transform 0.2s ease;
+    align-self: left; /* Ensure left alignment */
+}
+/* Optional: Add hover effect */
+.spectrogram:hover {
+    transform: scale(2.5); /* Slightly enlarge on hover */
+    cursor: zoom-in;
+}
 /* Responsive table */
 @media (max-width: 768px) {
     .audio-table table {
@@ -300,7 +313,7 @@ footer {
 .settings-cell {
     font-family: monospace;
     font-size: 0.85rem;
-    padding: 0.5rem 1rem;
+    /* padding: 0.5rem 1rem; */
     text-align: left;
     background-color: #eaeaea;
 }
@@ -354,7 +367,7 @@ footer {
     .settings-row td {
         display: block;
         text-align: left;
-        padding: 0.5rem;
+        /* padding: 0.5rem; */
     }
     
     .settings-cell {
