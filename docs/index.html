@@ -6,10 +6,10 @@
     <title>DroneAudioSet - Augmented Human Lab</title>
     
     <!-- Keep only UMD versions -->
-    <!-- <script src="https://unpkg.com/wavesurfer.js@4.6.0/dist/wavesurfer.min.js"></script>
-    <script src="https://unpkg.com/wavesurfer.js@4.6.0/dist/plugin/wavesurfer.spectrogram.min.js"></script> -->
-     <script src="https://unpkg.com/wavesurfer.js@7.9.5/dist/wavesurfer.min.js"></script>
-     <script src="https://unpkg.com/wavesurfer.js@7.9.5/dist/plugins/spectrogram.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js@4.6.0/dist/wavesurfer.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js@4.6.0/dist/plugin/wavesurfer.spectrogram.min.js"></script>
+     <!-- <script src="https://unpkg.com/wavesurfer.js@7.9.5/dist/wavesurfer.min.js"></script>
+     <script src="https://unpkg.com/wavesurfer.js@7.9.5/dist/plugins/spectrogram.min.js"></script> -->
     <!-- Then load other resources -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -102,48 +102,48 @@
                     WaveSurfer.spectrogram.create({
                         container: container,
                         labels: true,
-                        height: 256,
-                        splitChannels: [
-                                {
-                                    progressColor: 'green',
-                                    waveColor: 'pink'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                            ],
+                        height: 150,
+                        // splitChannels: [
+                        //         {
+                        //             progressColor: 'green',
+                        //             waveColor: 'pink'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //     ],
                         
                         scale: 'logarithmic',
                         frequencyMax: 8000,
