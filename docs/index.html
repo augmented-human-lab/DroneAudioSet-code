@@ -80,7 +80,7 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
                                     <audio controls data-channel="0">
                                         <source src="audio/example1/mic3_8array-up-File1_original.wav" type="audio/wav">
                                     </audio>
-                                    <img src="spectrograms/original_1.png" alt="Spectrogram 1" class="spectrogram">
+                                    <div class="spectrogram-container" data-audio-src="audio/example1/mic3_8array-up-File1_original.wav"></div>
                                 </td>
                                 <td>
                                     <audio  controls data-channel="0">
@@ -216,52 +216,102 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
             alert('Citation copied to clipboard!');
         }
     
-    // Function to generate spectrogram
-    async function generateSpectrogram(audioElement, containerId) {
-        const wavesurfer = WaveSurfer.create({
-            container: `#${containerId}`,
-            waveColor: '#2c3e50',
-            progressColor: '#3498db',
-            cursorColor: '#3498db',
-            barWidth: 2,
-            height: 100,
-            responsive: true,
-            plugins: [
-                WaveSurfer.spectrogram.create({
-                    container: `#${containerId}-spectrogram`,
-                    labels: false,
-                    height: 100,
-                    frequencyMax: 8000
-                })
-            ]
-        });
-
-        // Load audio from the source of the audio element
-        wavesurfer.load(audioElement.querySelector('source').src);
-        
-        return wavesurfer;
-    }
-
-    // Initialize all spectrograms when page loads
+    
     document.addEventListener('DOMContentLoaded', async () => {
-        const audioPlayers = document.querySelectorAll('audio');
+        // Initialize all spectrogram containers
+        const containers = document.querySelectorAll('.spectrogram-container');
         
-        audioPlayers.forEach(async (player, index) => {
-            const containerId = `spectrogram-${index}`;
-            const container = document.createElement('div');
-            container.id = containerId;
-            container.className = 'spectrogram-container';
-            player.parentNode.insertBefore(container, player.nextSibling);
+        containers.forEach(async (container, index) => {
+            const audioSrc = container.getAttribute('data-audio-src');
             
-            // Create spectrogram container
-            const specContainer = document.createElement('div');
-            specContainer.id = `${containerId}-spectrogram`;
-            container.appendChild(specContainer);
+            // Create WaveSurfer instance
+            const wavesurfer = WaveSurfer.create({
+                container: container,
+                waveColor: '#2c3e50',
+                progressColor: '#3498db',
+                cursorColor: '#3498db',
+                barWidth: 2,
+                height: 100,
+                responsive: true,
+                plugins: [
+                    WaveSurfer.spectrogram.create({
+                        container: container,
+                        labels: false,
+                        height: 100,
+                        frequencyMax: 8000,
+                        noverlap: 4,
+                        windowFunc: 'hann',
+                        fftSamples: 512
+                    })
+                ]
+            });
             
-            // Generate spectrogram
-            await generateSpectrogram(player, containerId);
+            // Load the audio file
+            wavesurfer.load(audioSrc);
+            
+            // Store wavesurfer instance on container for later access
+            container.wavesurfer = wavesurfer;
         });
+        
+        // Channel selection functionality
+        function changeChannel(selectElement) {
+            const audioSrc = selectElement.closest('td').querySelector('audio source').src;
+            const channel = selectElement.value;
+            const container = selectElement.closest('td').querySelector('.spectrogram-container');
+            
+            // Reload with selected channel
+            loadAudioWithChannel(audioSrc, channel, container);
+        }
+        
+        async function loadAudioWithChannel(url, channelIndex, container) {
+            if (container.wavesurfer) {
+                container.wavesurfer.destroy();
+            }
+            
+            const response = await fetch(url);
+            const arrayBuffer = await response.arrayBuffer();
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+            
+            // Create new wavesurfer instance
+            const wavesurfer = WaveSurfer.create({
+                container: container,
+                waveColor: '#2c3e50',
+                progressColor: '#3498db',
+                cursorColor: '#3498db',
+                barWidth: 2,
+                height: 100,
+                responsive: true,
+                plugins: [
+                    WaveSurfer.spectrogram.create({
+                        container: container,
+                        labels: false,
+                        height: 100,
+                        frequencyMax: 8000
+                    })
+                ]
+            });
+            
+            if (audioBuffer.numberOfChannels > 1) {
+                // Create mono version if multi-channel
+                const monoBuffer = audioContext.createBuffer(
+                    1,
+                    audioBuffer.length,
+                    audioBuffer.sampleRate
+                );
+                monoBuffer.getChannelData(0).set(audioBuffer.getChannelData(channelIndex));
+                wavesurfer.loadDecodedBuffer(monoBuffer);
+            } else {
+                // Load original if mono
+                wavesurfer.loadDecodedBuffer(audioBuffer);
+            }
+            
+            container.wavesurfer = wavesurfer;
+        }
+        
+        // Make changeChannel available globally
+        window.changeChannel = changeChannel;
     });
-    </script>
+</script>
 </body>
 </html>

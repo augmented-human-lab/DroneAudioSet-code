@@ -371,7 +371,10 @@ footer {
 .spectrogram-container {
     width: 100%;
     max-width: 200px;
+    height: 100px;
     margin: 0.5rem auto;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
 }
 
 /* Hide original spectrogram images */
