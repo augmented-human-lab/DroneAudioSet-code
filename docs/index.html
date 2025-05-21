@@ -3,33 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DroneAudioSet Project</title>
+    <title>DroneAudioSet - Augmented Human Lab</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>DroneAudioSet Project</h1>
+        <div class="header-content">
+            <h1>DroneAudioSet</h1>
+            <div class="authors">
+                <span>Your Name</span><sup>1</sup>,
+                <span>Co-Author</span><sup>2</sup>
+                <div class="affiliations">
+                    <sup>1</sup>Augmented Human Lab, Institution<br>
+                    <sup>2</sup>Affiliation 2
+                </div>
+            </div>
+            <div class="conference">
+                Published at Conference Name 2023
+            </div>
+        </div>
     </header>
-    
+
+    <nav>
+        <ul>
+            <li><a href="#abstract">Abstract</a></li>
+            <li><a href="#downloads">Downloads</a></li>
+            <li><a href="#citation">Citation</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
     <main>
-        <section id="about">
-            <h2>About the Project</h2>
-            <p>This project involves [brief description of your project].</p>
+        <section id="abstract">
+            <h2>Abstract</h2>
+            <div class="content-box">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. 
+                    Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus 
+                    gravida at rutrum nisl ultrices. Fusce fermentum aliquam arcu, sit amet 
+                    sollicitudin ante pulvinar eget.
+                </p>
+                <div class="teaser-image">
+                    <img src="images/teaser.png" alt="Project Teaser Image">
+                    <p class="caption">Figure: Caption for your teaser image.</p>
+                </div>
+            </div>
         </section>
-        
-        <section id="code">
-            <h2>Code Repository</h2>
-            <p>The code is available on <a href="https://github.com/augmented-human-lab/DroneAudioSet-code">GitHub</a>.</p>
+
+        <section id="downloads">
+            <h2>Downloads</h2>
+            <div class="content-box">
+                <div class="download-item">
+                    <i class="fas fa-file-pdf"></i>
+                    <div>
+                        <h3>Paper</h3>
+                        <p><a href="#">Download PDF</a> (X MB)</p>
+                    </div>
+                </div>
+                <div class="download-item">
+                    <i class="fas fa-code"></i>
+                    <div>
+                        <h3>Code</h3>
+                        <p><a href="https://github.com/augmented-human-lab/DroneAudioSet-code">GitHub Repository</a></p>
+                    </div>
+                </div>
+                <div class="download-item">
+                    <i class="fas fa-database"></i>
+                    <div>
+                        <h3>Dataset</h3>
+                        <p><a href="#">Download Dataset</a> (X GB)</p>
+                    </div>
+                </div>
+            </div>
         </section>
-        
-        <section id="publications">
-            <h2>Publications</h2>
-            <p>[List any related publications here]</p>
+
+        <section id="citation">
+            <h2>Citation</h2>
+            <div class="content-box citation-box">
+                <pre>
+@inproceedings{author2023droneaudioset,
+    title={DroneAudioSet: A Dataset for Audio-Based Drone Analysis},
+    author={Author1, A. and Author2, B.},
+    booktitle={Proceedings of the Conference},
+    year={2023}
+}</pre>
+                <button onclick="copyCitation()">Copy Citation</button>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="content-box">
+                <p>For questions and comments, please contact:</p>
+                <p><i class="fas fa-envelope"></i> your.email@institution.edu</p>
+            </div>
         </section>
     </main>
-    
+
     <footer>
-        <p>&copy; 2025 Augmented Human Lab</p>
+        <p>© 2023 Augmented Human Lab. Last updated: Month Day, Year.</p>
     </footer>
+
+    <script>
+        function copyCitation() {
+            const citation = document.querySelector('.citation-box pre');
+            navigator.clipboard.writeText(citation.innerText);
+            alert('Citation copied to clipboard!');
+        }
+    </script>
 </body>
 </html>
