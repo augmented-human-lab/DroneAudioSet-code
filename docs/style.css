@@ -367,3 +367,14 @@ footer {
         min-width: auto;
     }
 }
+
+.spectrogram-container {
+    width: 100%;
+    max-width: 200px;
+    margin: 0.5rem auto;
+}
+
+/* Hide original spectrogram images */
+.spectrogram {
+    display: none;
+}

@@ -6,6 +6,7 @@
     <title>DroneAudioSet - Augmented Human Lab</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/wavesurfer.js@7"></script>
 </head>
 <body>
     <header>
@@ -76,31 +77,31 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
                             </tr>
                             <tr>
                                 <td>
-                                    <audio controls>
+                                    <audio controls data-channel="0">
                                         <source src="audio/example1/mic3_8array-up-File1_original.wav" type="audio/wav">
                                     </audio>
                                     <img src="spectrograms/original_1.png" alt="Spectrogram 1" class="spectrogram">
                                 </td>
                                 <td>
-                                    <audio controls>
+                                    <audio  controls data-channel="0">
                                         <source src="audio/trad_1.wav" type="audio/wav">
                                     </audio>
                                     <img src="spectrograms/trad_1.png" alt="Spectrogram 1" class="spectrogram">
                                 </td>
                                 <td>
-                                    <audio controls>
+                                    <audio  controls data-channel="0">
                                         <source src="audio/neural_1.wav" type="audio/wav">
                                     </audio>
                                     <img src="spectrograms/neural_1.png" alt="Spectrogram 1" class="spectrogram">
                                 </td>
                                 <td>
-                                    <audio controls>
+                                    <audio  controls data-channel="0">
                                         <source src="audio/hybrid_1.wav" type="audio/wav">
                                     </audio>
                                     <img src="spectrograms/hybrid_1.png" alt="Spectrogram 1" class="spectrogram">
                                 </td>
                                 <td>
-                                    <audio controls>
+                                    <audio  controls data-channel="0">
                                         <source src="audio/clean_1.wav" type="audio/wav">
                                     </audio>
                                     <img src="spectrograms/clean_1.png" alt="Spectrogram 1" class="spectrogram">
@@ -214,6 +215,53 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
             navigator.clipboard.writeText(citation.innerText);
             alert('Citation copied to clipboard!');
         }
+    
+    // Function to generate spectrogram
+    async function generateSpectrogram(audioElement, containerId) {
+        const wavesurfer = WaveSurfer.create({
+            container: `#${containerId}`,
+            waveColor: '#2c3e50',
+            progressColor: '#3498db',
+            cursorColor: '#3498db',
+            barWidth: 2,
+            height: 100,
+            responsive: true,
+            plugins: [
+                WaveSurfer.spectrogram.create({
+                    container: `#${containerId}-spectrogram`,
+                    labels: false,
+                    height: 100,
+                    frequencyMax: 8000
+                })
+            ]
+        });
+
+        // Load audio from the source of the audio element
+        wavesurfer.load(audioElement.querySelector('source').src);
+        
+        return wavesurfer;
+    }
+
+    // Initialize all spectrograms when page loads
+    document.addEventListener('DOMContentLoaded', async () => {
+        const audioPlayers = document.querySelectorAll('audio');
+        
+        audioPlayers.forEach(async (player, index) => {
+            const containerId = `spectrogram-${index}`;
+            const container = document.createElement('div');
+            container.id = containerId;
+            container.className = 'spectrogram-container';
+            player.parentNode.insertBefore(container, player.nextSibling);
+            
+            // Create spectrogram container
+            const specContainer = document.createElement('div');
+            specContainer.id = `${containerId}-spectrogram`;
+            container.appendChild(specContainer);
+            
+            // Generate spectrogram
+            await generateSpectrogram(player, containerId);
+        });
+    });
     </script>
 </body>
 </html>
