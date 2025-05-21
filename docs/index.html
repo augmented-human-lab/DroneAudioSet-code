@@ -44,7 +44,10 @@
         </ul>
     </nav>
 
+    <script src="https://unpkg.com/wavesurfer.js"></script>
     <script>
+        
+        import WaveSurfer from 'wavesurfer.js';
         function copyCitation() {
             const citation = document.querySelector('.citation-box pre');
             navigator.clipboard.writeText(citation.innerText);
@@ -66,6 +69,7 @@
         const audioSrc = container.getAttribute('data-audio-src');
         
         try {
+            console.log('WaveSurfer:', WaveSurfer); // Check if it's loaded
             // Create WaveSurfer instance
             const wavesurfer = WaveSurfer.create({
                 container: container,
