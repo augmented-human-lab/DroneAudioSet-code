@@ -44,6 +44,69 @@
         </ul>
     </nav>
 
+    <script>
+        function copyCitation() {
+            const citation = document.querySelector('.citation-box pre');
+            navigator.clipboard.writeText(citation.innerText);
+            alert('Citation copied to clipboard!');
+        }
+    
+    
+    document.addEventListener('DOMContentLoaded', async () => {
+    // Check if WaveSurfer is loaded
+    if (typeof WaveSurfer === 'undefined') {
+        console.error('WaveSurfer is not loaded');
+        return;
+    }
+
+    // Initialize all spectrogram containers
+    const containers = document.querySelectorAll('.spectrogram-container');
+    
+    containers.forEach(async (container, index) => {
+        const audioSrc = container.getAttribute('data-audio-src');
+        
+        try {
+            // Create WaveSurfer instance
+            const wavesurfer = WaveSurfer.create({
+                container: container,
+                waveColor: 'transparent',
+                progressColor: 'transparent',
+                cursorWidth: 0,
+                height: 100,
+                responsive: true,
+                plugins: [
+                    WaveSurfer.spectrogram.create({
+                        container: container,
+                        labels: false,
+                        height: 100,
+                        frequencyMax: 8000,
+                        noverlap: 4,
+                        windowFunc: 'hann',
+                        fftSamples: 512,
+                        colorMap: 'viridis'
+                    })
+                ]
+            });
+            
+            // Load the audio file
+            wavesurfer.load(audioSrc);
+            
+            // Error handling
+            wavesurfer.on('error', (error) => {
+                console.error('Error loading audio:', error);
+                container.innerHTML = '<p class="error">Failed to load spectrogram</p>';
+            });
+            
+        } catch (error) {
+            console.error('Error initializing wavesurfer:', error);
+            container.innerHTML = '<p class="error">Spectrogram unavailable</p>';
+        }
+    });
+    
+    // Rest of your existing channel selection code...
+});
+</script>
+
     <main>
         <section id="abstract">
             <h2>Abstract</h2>
@@ -217,67 +280,6 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
         <p>© 2023 Augmented Human Lab. Last updated: Month Day, Year.</p>
     </footer>
 
-    <script>
-        function copyCitation() {
-            const citation = document.querySelector('.citation-box pre');
-            navigator.clipboard.writeText(citation.innerText);
-            alert('Citation copied to clipboard!');
-        }
     
-    
-    document.addEventListener('DOMContentLoaded', async () => {
-    // Check if WaveSurfer is loaded
-    if (typeof WaveSurfer === 'undefined') {
-        console.error('WaveSurfer is not loaded');
-        return;
-    }
-
-    // Initialize all spectrogram containers
-    const containers = document.querySelectorAll('.spectrogram-container');
-    
-    containers.forEach(async (container, index) => {
-        const audioSrc = container.getAttribute('data-audio-src');
-        
-        try {
-            // Create WaveSurfer instance
-            const wavesurfer = WaveSurfer.create({
-                container: container,
-                waveColor: 'transparent',
-                progressColor: 'transparent',
-                cursorWidth: 0,
-                height: 100,
-                responsive: true,
-                plugins: [
-                    WaveSurfer.spectrogram.create({
-                        container: container,
-                        labels: false,
-                        height: 100,
-                        frequencyMax: 8000,
-                        noverlap: 4,
-                        windowFunc: 'hann',
-                        fftSamples: 512,
-                        colorMap: 'viridis'
-                    })
-                ]
-            });
-            
-            // Load the audio file
-            wavesurfer.load(audioSrc);
-            
-            // Error handling
-            wavesurfer.on('error', (error) => {
-                console.error('Error loading audio:', error);
-                container.innerHTML = '<p class="error">Failed to load spectrogram</p>';
-            });
-            
-        } catch (error) {
-            console.error('Error initializing wavesurfer:', error);
-            container.innerHTML = '<p class="error">Spectrogram unavailable</p>';
-        }
-    });
-    
-    // Rest of your existing channel selection code...
-});
-</script>
 </body>
 </html>
