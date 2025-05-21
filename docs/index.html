@@ -7,8 +7,7 @@
     
     <!-- Keep only UMD versions -->
     <script src="https://unpkg.com/wavesurfer.js@4.6.0/dist/wavesurfer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/plugins/spectrogram.min.js"></script>
-
+    <script src="https://unpkg.com/wavesurfer.js@4.6.0/dist/plugin/wavesurfer.spectrogram.min.js"></script>
      
     <!-- Then load other resources -->
     <link rel="stylesheet" href="style.css">
@@ -90,8 +89,7 @@
                         frequencyMax: 8000,
                         noverlap: 4,
                         windowFunc: 'hann',
-                        fftSamples: 512,
-                        colorMap: 'viridis'
+                        fftSamples: 512
                     })
                 ]
             });
