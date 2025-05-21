@@ -234,14 +234,14 @@ footer {
     margin-bottom: 0.5rem;
 }
 
-.spectrogram {
+/* .spectrogram {
     width: 100%;
     max-width: 200px;
     height: auto;
     display: block;
     margin: 0 auto;
     border: 1px solid #ddd;
-}
+} */
 
 /* Responsive table */
 @media (max-width: 768px) {
@@ -329,14 +329,14 @@ footer {
     margin-bottom: 0.5rem;
 }
 
-.spectrogram {
+/* .spectrogram {
     width: 100%;
     max-width: 200px;
     height: auto;
     display: block;
     margin: 0 auto;
     border: 1px solid #ddd;
-}
+} */
 
 /* Responsive table */
 @media (max-width: 1200px) {
@@ -368,16 +368,16 @@ footer {
     }
 }
 
-.spectrogram-container {
-    width: 100%;
-    max-width: 200px;
-    height: 100px;
-    margin: 0.5rem auto;
-    background: #f8f8f8;
-    border: 1px solid #ddd;
-}
+/* .spectrogram-container {
+    width: 100%; */
+    /* max-width: 200px; */
+    /* height: 100px;
+    margin: 0.5rem auto; */
+    /* background: #f8f8f8; */
+    /* border: 1px solid #ddd; */
+/* } */
 
 /* Hide original spectrogram images */
-.spectrogram {
+/* .spectrogram {
     display: none;
-}
+} */
