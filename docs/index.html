@@ -79,18 +79,17 @@
                 waveColor: 'transparent',
                 progressColor: 'transparent',
                 cursorWidth: 0,
-                height: 50,
+                height: 100,
                 responsive: true,
                 plugins: [
                     WaveSurfer.spectrogram.create({
                         container: container,
-                        labels: false,
-                        height: 50,
+                        labels: true,
+                        height: 100,
                         frequencyMax: 8000,
                         noverlap: 4,
                         windowFunc: 'hann',
-                        fftSamples: 512,
-                        colorMap: 'viridis'
+                        fftSamples: 512
                     })
                 ]
             });
