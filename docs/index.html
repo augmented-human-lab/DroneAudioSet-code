@@ -102,55 +102,55 @@
                     WaveSurfer.spectrogram.create({
                         container: container,
                         labels: true,
-                        height: 150,
-                        splitChannels: [
-                                {
-                                    progressColor: 'green',
-                                    waveColor: 'pink'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                                {
-                                    progressColor: 'orange',
-                                    waveColor: 'purple',
-                                    height: '0'
-                                },
-                            ],
+                        height: 100,
+                        // splitChannels: [
+                        //         {
+                        //             progressColor: 'green',
+                        //             waveColor: 'pink'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //         {
+                        //             progressColor: 'orange',
+                        //             waveColor: 'purple',
+                        //             height: '0'
+                        //         },
+                        //     ],
                         
-                        scale: 'logarithmic',
+                        scale: 'mel',
                         frequencyMax: 8000,
                         frequencyMin: 0,
                         // noverlap: 4,
                         // windowFunc: 'hann',
-                        fftSamples: 512,
+                        fftSamples: 1024,
                         labelsBackground: 'rgba(0, 0, 0, 0.1)'
                         // colorMap: generateColorMap()
                     })
