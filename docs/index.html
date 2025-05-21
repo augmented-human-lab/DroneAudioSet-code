@@ -53,13 +53,16 @@
             alert('Citation copied to clipboard!');
         }
     
-    
+    </script>
+
+    <script>
     document.addEventListener('DOMContentLoaded', async () => {
     // Check if WaveSurfer is loaded
     if (typeof WaveSurfer === 'undefined') {
         console.error('WaveSurfer is not loaded');
         return;
     }
+    
 
     function generateColorMap() {
     const colorMap = [];
@@ -79,9 +82,9 @@
         const audioSrc = container.getAttribute('data-audio-src');
         
         try {
-            console.log('WaveSurfer:', WaveSurfer); // Check if it's loaded
-            console.log('container:', container); // Check if it's loaded
-            console.log('audioSrc:', audioSrc); // Check if it's loaded
+            // console.log('WaveSurfer:', WaveSurfer); // Check if it's loaded
+            // console.log('container:', container); // Check if it's loaded
+            // console.log('audioSrc:', audioSrc); // Check if it's loaded
             
             
             // Create WaveSurfer instance
@@ -89,15 +92,58 @@
                 container: container,
                 waveColor: 'rgb(200, 0, 200)',
                 progressColor: 'rgb(100, 0, 100)',
-                // cursorWidth: 0,
-                // height: 256,
+                cursorWidth: 0,
+                height: 0,
                 // responsive: true,
+                fillParent: true,
+                interact: true,
                 plugins: [
                     WaveSurfer.spectrogram.create({
                         container: container,
-                        labels: false,
+                        labels: true,
                         height: 256,
-                        splitChannels: true,
+                        splitChannels: [
+                                {
+                                    progressColor: 'green',
+                                    waveColor: 'pink'
+                                },
+                                {
+                                    progressColor: 'orange',
+                                    waveColor: 'purple',
+                                    height: '0'
+                                },
+                                {
+                                    progressColor: 'orange',
+                                    waveColor: 'purple',
+                                    height: '0'
+                                },
+                                {
+                                    progressColor: 'orange',
+                                    waveColor: 'purple',
+                                    height: '0'
+                                },
+                                {
+                                    progressColor: 'orange',
+                                    waveColor: 'purple',
+                                    height: '0'
+                                },
+                                {
+                                    progressColor: 'orange',
+                                    waveColor: 'purple',
+                                    height: '0'
+                                },
+                                {
+                                    progressColor: 'orange',
+                                    waveColor: 'purple',
+                                    height: '0'
+                                },
+                                {
+                                    progressColor: 'orange',
+                                    waveColor: 'purple',
+                                    height: '0'
+                                },
+                            ],
+                        
                         scale: 'logarithmic',
                         frequencyMax: 8000,
                         frequencyMin: 0,
@@ -165,7 +211,7 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
                         <tbody>
                             <!-- Example Row 1 -->
                             <tr class="settings-row">
-                                <td rowspan="2">-3.4 dB <br>(SNR group: >-10 dB)</td>
+                                <td rowspan="1">-3.4 dB <br>(SNR group: >-10 dB)</td>
                                 <td colspan="5" class="settings-cell">
                                     80pc-speaker-volume-room1-drone1-speaker-dist-1m-mic-dist-50cm-throttle-50-mic3_8array-up
                                 </td>
@@ -175,7 +221,7 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
                                     <audio controls data-channel="0">
                                         <source src="audio/example1/mic3_8array-up-File1_original.wav" type="audio/wav">
                                     </audio>
-                                    <!-- <div class="spectrogram-container" data-audio-src="audio/example1/mic3_8array-up-File1_original.wav"></div> -->
+                                    <div class="spectrogram-container" data-audio-src="audio/example1/mic3_8array-up-File1_original.wav"></div>
                                 </td>
                                 <td>
                                     <audio controls data-channel="0">
@@ -187,7 +233,7 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
                                     <audio controls data-channel="0">
                                         <source src="audio/example1/mic3_8array-up-File1_neural.wav" type="audio/wav">
                                     </audio>
-                                    <!-- <div class="spectrogram-container" data-audio-src="audio/example1/mic3_8array-up-File1_neural.wav"></div> -->
+                                    <div class="spectrogram-container" data-audio-src="audio/example1/mic3_8array-up-File1_neural.wav"></div>
                                 </td>
                                 <td>
                                     <audio controls data-channel="0">
@@ -199,7 +245,7 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
                                     <audio controls data-channel="0">
                                         <source src="audio/example1/mic3_8array-up-File1_clean.wav" type="audio/wav">
                                     </audio>
-                                    <!-- <div class="spectrogram-container" data-audio-src="audio/example1/mic3_8array-up-File1_clean.wav"></div> -->
+                                    <div class="spectrogram-container" data-audio-src="audio/example1/mic3_8array-up-File1_clean.wav"></div>
                                 </td>
                             </tr>
 
