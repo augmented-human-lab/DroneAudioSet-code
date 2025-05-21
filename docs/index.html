@@ -61,6 +61,17 @@
         return;
     }
 
+    function generateColorMap() {
+    const colorMap = [];
+    for (let i = 0; i < 256; i++) {
+        const r = i < 128 ? 0 : (i - 128) * 2;
+        const g = i < 128 ? i * 2 : 255 - (i - 128) * 2;
+        const b = 255 - i;
+        colorMap.push([r, g, b, 255]);  // RGBA
+    }
+    return colorMap;
+    }
+
     // Initialize all spectrogram containers
     const containers = document.querySelectorAll('.spectrogram-container');
     
@@ -79,17 +90,18 @@
                 waveColor: 'transparent',
                 progressColor: 'transparent',
                 cursorWidth: 0,
-                height: 100,
+                height: 256,
                 responsive: true,
                 plugins: [
                     WaveSurfer.spectrogram.create({
                         container: container,
-                        labels: true,
-                        height: 100,
+                        labels: false,
+                        height: 256,
                         frequencyMax: 8000,
                         noverlap: 4,
                         windowFunc: 'hann',
-                        fftSamples: 512
+                        fftSamples: 512,
+                        colorMap: generateColorMap()
                     })
                 ]
             });
