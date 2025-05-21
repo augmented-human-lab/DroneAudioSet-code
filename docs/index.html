@@ -28,6 +28,7 @@
     <nav>
         <ul>
             <li><a href="#abstract">Abstract</a></li>
+            <li><a href="#examples">Examples</a></li>
             <li><a href="#downloads">Downloads</a></li>
             <li><a href="#citation">Citation</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -46,6 +47,63 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
                 <div class="teaser-image">
                     <img src="images/data-collection-setup-v2.png" alt="Data Collection Setup">
                     <p class="caption">Figure (a) illustrates our experimental setup with the drone attached to a fixed aluminum frame, with two microphone arrays, \micup and \micdown, and a single microphone, \miccenter. The source sounds (i.e., human vocal sounds, human presence sounds and ambient sounds) are transmitted through a speaker. (b) the actual setup -- the drone frame, microphone array, and the drones used.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="examples">
+            <h2>Examples</h2>
+            <div class="content-box">
+                <div class="audio-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>SNR</th>
+                                <th>Original Recording</th>
+                                <th>Trad.</th>
+                                <th>Neural</th>
+                                <th>Hybrid</th>
+                                <th>Clean Recording</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Row 1 -->
+                            <tr>
+                                <td>-5 dB</td>
+                                <td>
+                                    <audio controls>
+                                        <source src="audio/original_1.wav" type="audio/wav">
+                                    </audio>
+                                    <img src="spectrograms/original_1.png" alt="Spectrogram 1" class="spectrogram">
+                                </td>
+                                <td>
+                                    <audio controls>
+                                        <source src="audio/trad_1.wav" type="audio/wav">
+                                    </audio>
+                                    <img src="spectrograms/trad_1.png" alt="Spectrogram 1" class="spectrogram">
+                                </td>
+                                <td>
+                                    <audio controls>
+                                        <source src="audio/neural_1.wav" type="audio/wav">
+                                    </audio>
+                                    <img src="spectrograms/neural_1.png" alt="Spectrogram 1" class="spectrogram">
+                                </td>
+                                <td>
+                                    <audio controls>
+                                        <source src="audio/hybrid_1.wav" type="audio/wav">
+                                    </audio>
+                                    <img src="spectrograms/hybrid_1.png" alt="Spectrogram 1" class="spectrogram">
+                                </td>
+                                <td>
+                                    <audio controls>
+                                        <source src="audio/clean_1.wav" type="audio/wav">
+                                    </audio>
+                                    <img src="spectrograms/clean_1.png" alt="Spectrogram 1" class="spectrogram">
+                                </td>
+                            </tr>
+                            <!-- Repeat for rows 2-8 (change the numbers) -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
