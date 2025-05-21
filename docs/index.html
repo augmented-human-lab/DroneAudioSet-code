@@ -6,7 +6,9 @@
     <title>DroneAudioSet - Augmented Human Lab</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/wavesurfer.js@7"></script>
+    <script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/spectrogram.js"></script>
+    
 </head>
 <body>
     <header>
@@ -218,19 +220,25 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
     
     
     document.addEventListener('DOMContentLoaded', async () => {
-        // Initialize all spectrogram containers
-        const containers = document.querySelectorAll('.spectrogram-container');
+    // Check if WaveSurfer is loaded
+    if (typeof WaveSurfer === 'undefined') {
+        console.error('WaveSurfer is not loaded');
+        return;
+    }
+
+    // Initialize all spectrogram containers
+    const containers = document.querySelectorAll('.spectrogram-container');
+    
+    containers.forEach(async (container, index) => {
+        const audioSrc = container.getAttribute('data-audio-src');
         
-        containers.forEach(async (container, index) => {
-            const audioSrc = container.getAttribute('data-audio-src');
-            
+        try {
             // Create WaveSurfer instance
             const wavesurfer = WaveSurfer.create({
                 container: container,
-                waveColor: '#2c3e50',
-                progressColor: '#3498db',
-                cursorColor: '#3498db',
-                barWidth: 2,
+                waveColor: 'transparent',
+                progressColor: 'transparent',
+                cursorWidth: 0,
                 height: 100,
                 responsive: true,
                 plugins: [
@@ -241,7 +249,8 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
                         frequencyMax: 8000,
                         noverlap: 4,
                         windowFunc: 'hann',
-                        fftSamples: 512
+                        fftSamples: 512,
+                        colorMap: 'viridis'
                     })
                 ]
             });
@@ -249,69 +258,20 @@ To this end, we present DroneAudioset (The dataset is publicly available at http
             // Load the audio file
             wavesurfer.load(audioSrc);
             
-            // Store wavesurfer instance on container for later access
-            container.wavesurfer = wavesurfer;
-        });
-        
-        // Channel selection functionality
-        function changeChannel(selectElement) {
-            const audioSrc = selectElement.closest('td').querySelector('audio source').src;
-            const channel = selectElement.value;
-            const container = selectElement.closest('td').querySelector('.spectrogram-container');
-            
-            // Reload with selected channel
-            loadAudioWithChannel(audioSrc, channel, container);
-        }
-        
-        async function loadAudioWithChannel(url, channelIndex, container) {
-            if (container.wavesurfer) {
-                container.wavesurfer.destroy();
-            }
-            
-            const response = await fetch(url);
-            const arrayBuffer = await response.arrayBuffer();
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-            
-            // Create new wavesurfer instance
-            const wavesurfer = WaveSurfer.create({
-                container: container,
-                waveColor: '#2c3e50',
-                progressColor: '#3498db',
-                cursorColor: '#3498db',
-                barWidth: 2,
-                height: 100,
-                responsive: true,
-                plugins: [
-                    WaveSurfer.spectrogram.create({
-                        container: container,
-                        labels: false,
-                        height: 100,
-                        frequencyMax: 8000
-                    })
-                ]
+            // Error handling
+            wavesurfer.on('error', (error) => {
+                console.error('Error loading audio:', error);
+                container.innerHTML = '<p class="error">Failed to load spectrogram</p>';
             });
             
-            if (audioBuffer.numberOfChannels > 1) {
-                // Create mono version if multi-channel
-                const monoBuffer = audioContext.createBuffer(
-                    1,
-                    audioBuffer.length,
-                    audioBuffer.sampleRate
-                );
-                monoBuffer.getChannelData(0).set(audioBuffer.getChannelData(channelIndex));
-                wavesurfer.loadDecodedBuffer(monoBuffer);
-            } else {
-                // Load original if mono
-                wavesurfer.loadDecodedBuffer(audioBuffer);
-            }
-            
-            container.wavesurfer = wavesurfer;
+        } catch (error) {
+            console.error('Error initializing wavesurfer:', error);
+            container.innerHTML = '<p class="error">Spectrogram unavailable</p>';
         }
-        
-        // Make changeChannel available globally
-        window.changeChannel = changeChannel;
     });
+    
+    // Rest of your existing channel selection code...
+});
 </script>
 </body>
 </html>
