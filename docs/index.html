@@ -85,27 +85,39 @@
             
             
             // Create WaveSurfer instance
-            const wavesurfer = WaveSurfer.create({
-                container: container,
-                waveColor: 'transparent',
-                progressColor: 'transparent',
-                cursorWidth: 0,
-                height: 256,
-                responsive: true,
-                plugins: [
-                    WaveSurfer.spectrogram.create({
+            // const wavesurfer = WaveSurfer.create({
+            //     container: container,
+            //     waveColor: 'transparent',
+            //     progressColor: 'transparent',
+            //     cursorWidth: 0,
+            //     height: 256,
+            //     responsive: true,
+            //     plugins: [
+            //         WaveSurfer.spectrogram.create({
+            //             container: container,
+            //             labels: false,
+            //             height: 256,
+            //             frequencyMax: 8000,
+            //             noverlap: 4,
+            //             windowFunc: 'hann',
+            //             fftSamples: 512
+            //             // colorMap: generateColorMap()
+            //         })
+            //     ]
+            // });
+            
+            const wavesurfer = WaveSurfer.spectrogram.create({
                         container: container,
                         labels: false,
                         height: 256,
                         frequencyMax: 8000,
                         noverlap: 4,
                         windowFunc: 'hann',
-                        fftSamples: 512,
-                        colorMap: generateColorMap()
-                    })
-                ]
+                        fftSamples: 512
+                        // colorMap: generateColorMap()
+                
             });
-            
+
             // Load the audio file
             wavesurfer.load(audioSrc);
             
