@@ -65,7 +65,7 @@
     const containers = document.querySelectorAll('.spectrogram-container');
     
     containers.forEach(async (container, index) => {
-        const audioSrc = '/'+container.getAttribute('data-audio-src');
+        const audioSrc = container.getAttribute('data-audio-src');
         
         try {
             console.log('WaveSurfer:', WaveSurfer); // Check if it's loaded
