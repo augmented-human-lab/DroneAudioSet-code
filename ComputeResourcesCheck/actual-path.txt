@@ -1,0 +1,1 @@
+/data/BlindDroneData/DroneAudioSet/drone-with-source-recordings/speaker-loudness-90db/room1/drone1/speaker-dist-1m/mic-dist-25cm/throttle-high
