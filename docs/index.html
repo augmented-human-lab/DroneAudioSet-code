@@ -5,16 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DroneAudioSet - Augmented Human Lab</title>
     
-    <!-- Keep only UMD versions -->
-    <!-- <script src="https://unpkg.com/wavesurfer.js@4.6.0/dist/wavesurfer.min.js"></script>
-    <script src="https://unpkg.com/wavesurfer.js@4.6.0/dist/plugin/wavesurfer.spectrogram.min.js"></script> -->
-     <!-- <script src="https://unpkg.com/wavesurfer.js@7.9.5/dist/wavesurfer.min.js"></script>
-     <script src="https://unpkg.com/wavesurfer.js@7.9.5/dist/plugins/spectrogram.min.js"></script> -->
-     <!-- <script src="https://unpkg.com/wavesurfer.js@7.9.5/dist/plugins/spectrogram.min.js"></script> -->
-    <!-- <script src="https://unpkg.com/wavesurfer.js@6/dist/wavesurfer.js"></script>
-    <script src="https://unpkg.com/wavesurfer.js@6/dist/plugin/wavesurfer.spectrogram.js"></script> -->
-     
-    
      <!-- Then load other resources -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -60,118 +50,7 @@
         }
     
     </script>
-<!-- 
-    <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-    // Check if WaveSurfer is loaded
-    if (typeof WaveSurfer === 'undefined') {
-        console.error('WaveSurfer is not loaded');
-        return;
-    }
-    
 
-    
-
-    // Initialize all spectrogram containers
-    const containers = document.querySelectorAll('.spectrogram-container');
-    
-    containers.forEach(async (container, index) => {
-        const audioSrc = container.getAttribute('data-audio-src');
-        
-        try {
-            // console.log('WaveSurfer:', WaveSurfer); // Check if it's loaded
-            // console.log('container:', container); // Check if it's loaded
-            // console.log('audioSrc:', audioSrc); // Check if it's loaded
-            
-            
-            // Create WaveSurfer instance
-            const wavesurfer = WaveSurfer.create({
-                container: container,
-                // waveColor: 'rgb(200, 0, 200)',
-                // progressColor: 'rgb(100, 0, 100)',
-                cursorWidth: 0,
-                height: 0,
-                // responsive: true,
-                fillParent: true,
-                interact: true,
-                plugins: [
-                    WaveSurfer.spectrogram.create({
-                        container: container,
-                        labels: true,
-                        height: 200,
-                        // splitChannels: [
-                        //         {
-                        //             progressColor: 'green',
-                        //             waveColor: 'pink'
-                        //         },
-                        //         {
-                        //             progressColor: 'orange',
-                        //             waveColor: 'purple',
-                        //             height: '0'
-                        //         },
-                        //         {
-                        //             progressColor: 'orange',
-                        //             waveColor: 'purple',
-                        //             height: '0'
-                        //         },
-                        //         {
-                        //             progressColor: 'orange',
-                        //             waveColor: 'purple',
-                        //             height: '0'
-                        //         },
-                        //         {
-                        //             progressColor: 'orange',
-                        //             waveColor: 'purple',
-                        //             height: '0'
-                        //         },
-                        //         {
-                        //             progressColor: 'orange',
-                        //             waveColor: 'purple',
-                        //             height: '0'
-                        //         },
-                        //         {
-                        //             progressColor: 'orange',
-                        //             waveColor: 'purple',
-                        //             height: '0'
-                        //         },
-                        //         {
-                        //             progressColor: 'orange',
-                        //             waveColor: 'purple',
-                        //             height: '0'
-                        //         },
-                        //     ],
-                        
-                        scale: 'mel',
-                        frequencyMax: 8000,
-                        frequencyMin: 0,
-                        // noverlap: 4,
-                        // windowFunc: 'hann',
-                        fftSamples: 1024,
-                        // labelsBackground: 'rgba(0, 0, 0, 0.1)'
-                        // colorMap: generateColorMap()
-                    })
-                ]
-            });
-            
-            
-
-            // Load the audio file
-            wavesurfer.load(audioSrc);
-            
-            // Error handling
-            wavesurfer.on('error', (error) => {
-                console.error('Error loading audio:', error);
-                container.innerHTML = '<p class="error">Failed to load spectrogram</p>';
-            });
-            
-        } catch (error) {
-            console.error('Error initializing wavesurfer:', error);
-            container.innerHTML = '<p class="error">Spectrogram unavailable</p>';
-        }
-    });
-    
-});
-</script> -->
 
     <main>
         <section id="abstract">
@@ -180,11 +59,11 @@
                 <p>
                     Unmanned Aerial Vehicles (UAVs) or drones, are increasingly used in search and rescue missions to detect human presence. Existing systems primarily leverage vision-based methods which are prone to fail under low-visibility or occlusion. Drone-based audio perception offers promise but suffers from extreme ego-noise that masks sounds indicating human presence.  
 Existing datasets are either limited in diversity or synthetic, lacking real acoustic interactions, and there are no standardized setups for drone audition. 
-To this end, we present DroneAudioset (The dataset is publicly available at https://huggingface.co/datasets/ahlab-drone-project/DroneAudioSet/ under the MIT license), a comprehensive drone audition dataset featuring 23.5 hours of annotated recordings, covering a wide range of signal-to-noise ratios (SNRs) from -60 dB to 0 dB, across various drone types, throttles, microphone configurations as well as environments. The dataset enables development and systematic evaluation of noise suppression and classification methods for human-presence detection under challenging conditions, while also informing practical design considerations for drone audition systems, such as microphone placement trade-offs, and development of drone noise-aware audio processing. This dataset is an important step towards enabling design and deployment of drone-audition systems.
+To this end, we present DroneAudioset, a comprehensive drone audition dataset featuring 23.5 hours of annotated recordings, covering a wide range of signal-to-noise ratios (SNRs) from -60 dB to 0 dB, across various drone types, throttles, microphone configurations as well as environments. The dataset enables development and systematic evaluation of noise suppression and classification methods for human-presence detection under challenging conditions, while also informing practical design considerations for drone audition systems, such as microphone placement trade-offs, and development of drone noise-aware audio processing. This dataset is an important step towards enabling design and deployment of drone-audition systems.
                 </p>
                 <div class="teaser-image">
                     <img src="images/data-collection-setup-v2.png" alt="Data Collection Setup">
-                    <p class="caption">Figure (a) illustrates our experimental setup with the drone attached to a fixed aluminum frame, with two microphone arrays, \micup and \micdown, and a single microphone, \miccenter. The source sounds (i.e., human vocal sounds, human presence sounds and ambient sounds) are transmitted through a speaker. (b) the actual setup -- the drone frame, microphone array, and the drones used.</p>
+                    <p class="caption">Figure (a) illustrates our experimental setup with the drone attached to a fixed aluminum frame, with two microphone arrays, M-up and M-down, and a single microphone, M-center. The source sounds (i.e., human vocal sounds, human presence sounds and ambient sounds) are transmitted through a speaker. (b) the actual setup -- the drone frame, microphone array, and the drones used.</p>
                 </div>
             </div>
         </section>
