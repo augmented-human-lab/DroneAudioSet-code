@@ -1,8 +1,11 @@
 # DroneAudioSet Code
 
 Refer to the supporting webpage here: https://apps.ahlab.org/DroneAudioSet-code/
+
 Dataset available here: https://huggingface.co/datasets/ahlab-drone-project/DroneAudioSet
+
 Use the pandas or datasets libraries to download the dataset from HuggingFace.
+
 The fully downloaded dataset, according to the `path` variable, would look like this:
 
 ![Folder Structure](docs/images/folderstructure.png)
@@ -10,12 +13,14 @@ The fully downloaded dataset, according to the `path` variable, would look like 
 ## Sample Audio Files
 `ComputeResourcesCheck` folder contains all sample audio files
 * `ComputeResourcesCheck/preprocessed-audio`: contains 6 audio file recordings containing source and drone sounds. The chosen setting was:
+```
 Volume: 80pc
 Room: room1
 Drone: drone1
 Drone-Speaker Distance: speaker-dist-1m
 Mic: mic3_8array-up
 Drone-Mic Distance: mic-dist-25cm
+```
 
 * `ComputeResourcesCheck/beamforming`: contains 6 audio files after the `preprocess-audio` files are passed through the beamforming (MVDR) stage.
 * `ComputeResourcesCheck/spectral-gating`: contains 6 audio files after the `beamforming` files are passed through the spectral gating (noise-reduce) stage.
