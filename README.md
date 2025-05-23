@@ -1,6 +1,10 @@
 # DroneAudioSet Code
 
 Refer to the supporting webpage here: https://apps.ahlab.org/DroneAudioSet-code/
+Dataset available here: https://huggingface.co/datasets/ahlab-drone-project/DroneAudioSet
+Use the pandas or datasets libraries to download the dataset from HuggingFace.
+The fully downloaded dataset, according to the `path` variable, would look like this:
+![Folder Structure](docs/images/folderstructure.png)
 
 ## Sample Audio Files
 `ComputeResourcesCheck` folder contains all sample audio files
