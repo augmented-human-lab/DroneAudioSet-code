@@ -10,4 +10,8 @@ mic_reorder_list = np.array([6, 5, 0, 3, 7, 4, 1, 2]) # mic position and channel
 # initialize parameters for Spectral Gating
 aggressiveness = 0.5
 
+# for classification
+original_data_path = './audio-samples/original-source-signals/'
+label_mapping_path ='scripts/csv-data/audioset_labelmapping.csv'
+
 
