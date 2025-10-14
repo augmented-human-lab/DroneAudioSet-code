@@ -2,6 +2,7 @@
 Script to download and optionally save DroneAudioSet subsets from Hugging Face.
 
 Usage:
+    - Run `python -m scripts.1_download_hf_data` to execute the script.
     - Set `is_save_locally=True` to save files to `root_folder`.
     - Optionally set `cache_dir` to redirect Hugging Face cache to a drive with >45 GB free space.
 
