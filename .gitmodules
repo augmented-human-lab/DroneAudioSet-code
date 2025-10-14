@@ -1,6 +1,6 @@
-[submodule "scripts/mpsenet"]
-	path = scripts/mpsenet
+[submodule "scripts/algorithms/mpsenet"]
+	path = scripts/algorithms/mpsenet
 	url = https://github.com/yxlu-0102/MP-SENet.git
-[submodule "scripts/sslam"]
-	path = scripts/sslam
+[submodule "scripts/algorithms/sslam"]
+	path = scripts/algorithms/sslam
 	url = https://github.com/ta012/SSLAM.git
