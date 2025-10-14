@@ -1,36 +1,26 @@
+"""This script rectifies offsets and resamples multichannel audio files.
+It has already been executed before uploading the dataset to Hugging Face,
+so it does not need to be re-run. It assumes the original sampling rate is 48kHz and resamples to 16kHz.
+
+Usage
+    Run `python -m scripts.0_preprocess_data` to execute the script.
+    Ensure to set `read_path` and `write_path` variables before running.
+"""
+
 import os
 import numpy as np
 import soundfile as sf
-from scipy.signal import resample_poly
+from scripts.utils.audio_processing import (read_audio_signal, write_audio_signal,
+                                    multichannel_resample)
 
 orig_fs = 48000
 target_fs = 16000
 
-# read single channel audio files
-def read_audio_signal(file_path, fs, always_2d=True):
-    sig, sig_fs = sf.read(file_path, dtype='float32', always_2d=always_2d)
-    assert sig_fs == fs
-    return sig
-
-# write audio signals, including multi-channel
-def write_audio_signal(file_path, sig, fs):
-	sf.write(file=file_path, data=sig, samplerate=fs)
-
-# resample multi-channel audio
-def multichannel_resample(multi_sig, n_channels, orig_fs, target_fs):
-    # multi_sig dimensions (n_samples, n_channels)
-    assert (multi_sig.shape[1] == n_channels), 'incorrect number of channels/format'
-    # Resample each channel consistently using resample_poly
-    resampled_channels = [
-        resample_poly(multi_sig[:, idx], up=target_fs, down=orig_fs)  # Resample using the ratio of target to original sampling rates
-        for idx in range(n_channels)
-    ]
-    # Stack resampled channels back into a single multi-channel signal
-    resampled_multi_sig = np.stack(resampled_channels, axis=1)
-    assert resampled_multi_sig.shape[1] == n_channels
-    return resampled_multi_sig
-
-def rectify_offset_and_resample(read_path, write_path, silence_threshold=orig_fs//2):
+def rectify_offset_and_resample(read_path: str, write_path: str,
+                                silence_threshold: int = orig_fs//2) -> None:
+    """
+    Removes initial silence/offset from multichannel audio and resamples from 48kHz to 16kHz.
+    """
     if read_path.lower().endswith('.wav'):
         data = read_audio_signal(file_path=read_path, fs=orig_fs)
         if 'soundskrit' in read_path:
