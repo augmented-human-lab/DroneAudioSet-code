@@ -26,7 +26,16 @@ from scripts.utils.mpsenet_util import (split_wav_by_channels_and_time,
                                         stitch_wav_files)
 
 def process_mpsenet(input_folder:str, output_folder:str) -> None:
-    """Run MPSENET on split wav files."""
+    """
+    Run MPSENET noise suppression on split wav files.
+
+    Parameters:
+    - input_folder (str): Directory containing input noisy wav segments.
+    - output_folder (str): Directory where processed wav files will be saved.
+
+    This function executes the MPSENET inference script as a subprocess,
+    passing the input and output directories along with the checkpoint file.
+    """
     os.makedirs(output_folder, exist_ok=True)
     if any(f.endswith(".wav") for f in os.listdir(output_folder)):
         return  # Skip if already processed
@@ -34,6 +43,21 @@ def process_mpsenet(input_folder:str, output_folder:str) -> None:
     subprocess.run(cmd, shell=True, check=True)
 
 def main(source_root: str, target_root: str, is_save: bool) -> None:
+    """
+    Main processing loop over the beamformed audio dataset.
+
+    Iterates through all files in the source_root directory, splits multi-channel wav files,
+    runs noise suppression using MPSENET on the split segments, stitches the processed segments
+    back together, and saves the final output in the target_root directory.
+
+    Temporary folders are created for intermediate files and deleted after processing each folder.
+
+    Parameters:
+    - source_root (str): Root directory containing beamformed audio files.
+    - target_root (str): Root directory where denoised outputs will be saved.
+    - is_save (bool): Flag to enable or disable processing and saving outputs.
+
+    """
     if not is_save:
         print("is_save is set to False. Exiting without processing.")
         return
